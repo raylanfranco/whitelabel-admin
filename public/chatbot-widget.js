@@ -10,7 +10,7 @@
   // Configuration
   const CONFIG = {
     apiEndpoint: 'http://localhost:1337/api/chatbot/leads',
-    primaryColor: '#2289e0', // Blue - matches template theme
+    primaryColor: '#2289e1', // Blue - matches template theme
     secondaryColor: '#1a6fbd',
     position: 'bottom-right', // bottom-right, bottom-left
     greeting: "Hi! 👋 Need help with pest control?",
