@@ -50,3 +50,7 @@ Thumbs.db
 # Build artifacts
 build/
 *.tsbuildinfo
+
+design-references/
+docs/
+backend/admin-panel-backend/README.md
