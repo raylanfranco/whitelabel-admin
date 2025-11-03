@@ -10,8 +10,8 @@
   // Configuration
   const CONFIG = {
     apiEndpoint: 'http://localhost:1337/api/chatbot/leads',
-    primaryColor: '#10B981', // Green - matches your admin panel
-    secondaryColor: '#059669',
+    primaryColor: '#2289e0', // Blue - matches template theme
+    secondaryColor: '#1a6fbd',
     position: 'bottom-right', // bottom-right, bottom-left
     greeting: "Hi! 👋 Need help with pest control?",
     companyName: "Bob's Pest Control"
@@ -349,8 +349,8 @@
     const button = document.createElement('button');
     button.id = 'vr-chatbot-button';
     button.innerHTML = `
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
       </svg>
     `;
     button.onclick = toggleChatbot;
@@ -365,8 +365,8 @@
           <p>We typically reply instantly</p>
         </div>
         <button id="vr-chatbot-close">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
