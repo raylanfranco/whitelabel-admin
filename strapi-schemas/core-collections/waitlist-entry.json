@@ -1,0 +1,129 @@
+{
+  "kind": "collectionType",
+  "collectionName": "waitlist_entries",
+  "info": {
+    "singularName": "waitlist-entry",
+    "pluralName": "waitlist-entries",
+    "displayName": "Waitlist Entry",
+    "description": "Client waitlist entries for appointment availability"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "priority": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "notified", "booked", "declined", "expired", "removed"],
+      "default": "active",
+      "required": true
+    },
+    "requestedDate": {
+      "type": "date",
+      "required": true
+    },
+    "preferredTimeSlots": {
+      "type": "json"
+    },
+    "flexibleDates": {
+      "type": "boolean",
+      "default": true
+    },
+    "maxWaitDays": {
+      "type": "integer",
+      "default": 30,
+      "min": 1
+    },
+    "notificationMethod": {
+      "type": "enumeration",
+      "enum": ["sms", "email", "both"],
+      "default": "both",
+      "required": true
+    },
+    "notificationSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "notificationSentAt": {
+      "type": "datetime"
+    },
+    "responseDeadline": {
+      "type": "datetime"
+    },
+    "clientResponse": {
+      "type": "enumeration",
+      "enum": ["pending", "accepted", "declined", "expired"]
+    },
+    "clientResponseAt": {
+      "type": "datetime"
+    },
+    "responseTime": {
+      "type": "integer",
+      "min": 0
+    },
+    "declineReason": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "urgency": {
+      "type": "enumeration",
+      "enum": ["low", "normal", "high"],
+      "default": "normal"
+    },
+    "communicationHistory": {
+      "type": "json"
+    },
+    "automaticNotification": {
+      "type": "boolean",
+      "default": true
+    },
+    "reminderCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "lastReminderSent": {
+      "type": "datetime"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": ["website", "phone", "walk_in", "referral"],
+      "default": "website"
+    },
+    "estimatedWaitTime": {
+      "type": "integer",
+      "min": 0
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "waitlistEntries",
+      "required": true
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "waitlistEntries",
+      "required": true
+    },
+    "requestedServices": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service"
+    },
+    "resultingAppointment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::appointment.appointment"
+    }
+  }
+}

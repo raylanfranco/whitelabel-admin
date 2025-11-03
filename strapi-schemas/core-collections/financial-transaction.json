@@ -1,0 +1,164 @@
+{
+  "kind": "collectionType",
+  "collectionName": "financial_transactions",
+  "info": {
+    "singularName": "financial-transaction",
+    "pluralName": "financial-transactions",
+    "displayName": "Financial Transaction",
+    "description": "Payment transactions and financial records"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "transactionId": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["payment", "refund", "deposit", "fee", "expense", "adjustment"],
+      "default": "payment",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["service_payment", "deposit", "cancellation_fee", "no_show_fee", "product_sale", "tip", "business_expense", "tax", "other"],
+      "default": "service_payment",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD",
+      "required": true
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": ["cash", "credit_card", "debit_card", "bank_transfer", "digital_wallet", "check", "gift_card", "other"],
+      "default": "credit_card",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "completed", "failed", "cancelled", "refunded", "disputed"],
+      "default": "pending",
+      "required": true
+    },
+    "stripePaymentIntentId": {
+      "type": "string"
+    },
+    "stripeChargeId": {
+      "type": "string"
+    },
+    "processingFee": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "netAmount": {
+      "type": "decimal",
+      "min": 0
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "internalNotes": {
+      "type": "text"
+    },
+    "receiptNumber": {
+      "type": "string"
+    },
+    "receiptGenerated": {
+      "type": "boolean",
+      "default": false
+    },
+    "receiptSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "receiptSentAt": {
+      "type": "datetime"
+    },
+    "processedAt": {
+      "type": "datetime"
+    },
+    "refundedAt": {
+      "type": "datetime"
+    },
+    "refundAmount": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "refundReason": {
+      "type": "text"
+    },
+    "taxable": {
+      "type": "boolean",
+      "default": true
+    },
+    "taxCategory": {
+      "type": "enumeration",
+      "enum": ["service_income", "product_sale", "business_expense", "equipment", "supplies", "marketing", "professional_services", "travel", "other"]
+    },
+    "taxAmount": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "quarterlyPeriod": {
+      "type": "string"
+    },
+    "fiscalYear": {
+      "type": "integer"
+    },
+    "reconciled": {
+      "type": "boolean",
+      "default": false
+    },
+    "reconciledAt": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "transactions"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "financialTransactions",
+      "required": true
+    },
+    "appointment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::appointment.appointment",
+      "inversedBy": "transactions"
+    },
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service",
+      "inversedBy": "transactions"
+    },
+    "processedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "kind": "collectionType",
+  "collectionName": "email_logs",
+  "info": {
+    "singularName": "email-log",
+    "pluralName": "email-logs",
+    "displayName": "Email Log",
+    "description": "Email communication tracking and delivery logs"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sendgridMessageId": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "emailType": {
+      "type": "enumeration",
+      "enum": ["appointment_confirmation", "reminder", "receipt", "consent_form", "welcome", "marketing", "support", "custom"],
+      "default": "custom",
+      "required": true
+    },
+    "toEmail": {
+      "type": "email",
+      "required": true
+    },
+    "fromEmail": {
+      "type": "email",
+      "required": true
+    },
+    "replyToEmail": {
+      "type": "email"
+    },
+    "subject": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "htmlContent": {
+      "type": "text"
+    },
+    "textContent": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["queued", "sending", "sent", "delivered", "opened", "clicked", "bounced", "failed", "spam", "unsubscribed"],
+      "default": "queued",
+      "required": true
+    },
+    "sendgridStatus": {
+      "type": "string"
+    },
+    "errorMessage": {
+      "type": "text"
+    },
+    "bounceReason": {
+      "type": "text"
+    },
+    "sentAt": {
+      "type": "datetime"
+    },
+    "deliveredAt": {
+      "type": "datetime"
+    },
+    "openedAt": {
+      "type": "datetime"
+    },
+    "firstClickAt": {
+      "type": "datetime"
+    },
+    "lastClickAt": {
+      "type": "datetime"
+    },
+    "clickCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "openCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "templateId": {
+      "type": "string"
+    },
+    "templateVersion": {
+      "type": "string"
+    },
+    "templateVariables": {
+      "type": "json"
+    },
+    "attachments": {
+      "type": "json"
+    },
+    "scheduledFor": {
+      "type": "datetime"
+    },
+    "campaignId": {
+      "type": "string"
+    },
+    "automationTriggered": {
+      "type": "boolean",
+      "default": false
+    },
+    "automationRule": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["low", "normal", "high", "urgent"],
+      "default": "normal"
+    },
+    "retryCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "maxRetries": {
+      "type": "integer",
+      "default": 3,
+      "min": 0
+    },
+    "nextRetryAt": {
+      "type": "datetime"
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "deviceType": {
+      "type": "enumeration",
+      "enum": ["desktop", "mobile", "tablet", "unknown"],
+      "default": "unknown"
+    },
+    "emailClient": {
+      "type": "string"
+    },
+    "geolocation": {
+      "type": "json"
+    },
+    "unsubscribed": {
+      "type": "boolean",
+      "default": false
+    },
+    "unsubscribedAt": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "emailLogs",
+      "required": true
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client"
+    },
+    "appointment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::appointment.appointment"
+    },
+    "transaction": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::financial-transaction.financial-transaction"
+    },
+    "sentBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

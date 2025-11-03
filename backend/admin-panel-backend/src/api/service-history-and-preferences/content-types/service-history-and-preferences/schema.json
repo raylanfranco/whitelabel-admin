@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_history_and_preferences_config",
+  "info": {
+    "singularName": "service-history-and-preferences",
+    "pluralName": "service-history-and-preferences-config",
+    "displayName": "Service History & Preferences"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "totalSessions": {
+      "type": "integer"
+    },
+    "firstVisit": {
+      "type": "date"
+    },
+    "lastVisit": {
+      "type": "date"
+    },
+    "notes": {
+      "type": "richtext"
+    },
+    "allergies": {
+      "type": "string"
+    },
+    "skinType": {
+      "type": "enumeration",
+      "enum": [
+        "sensitive,",
+        "normal,",
+        "oily,",
+        "dry,",
+        "combination"
+      ]
+    }
+  }
+}

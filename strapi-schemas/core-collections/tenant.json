@@ -1,0 +1,160 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tenants",
+  "info": {
+    "singularName": "tenant",
+    "pluralName": "tenants",
+    "displayName": "Tenant",
+    "description": "Business/studio tenants using the platform"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "businessName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "businessName",
+      "required": true
+    },
+    "businessEmail": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "businessPhone": {
+      "type": "string",
+      "required": true
+    },
+    "businessAddress": {
+      "type": "text"
+    },
+    "businessWebsite": {
+      "type": "string"
+    },
+    "logoUrl": {
+      "type": "string"
+    },
+    "backgroundImageUrl": {
+      "type": "string"
+    },
+    "subscriptionTier": {
+      "type": "enumeration",
+      "enum": ["basic", "premium"],
+      "default": "basic",
+      "required": true
+    },
+    "subscriptionStatus": {
+      "type": "enumeration",
+      "enum": ["active", "past_due", "canceled", "trialing"],
+      "default": "trialing",
+      "required": true
+    },
+    "stripeCustomerId": {
+      "type": "string",
+      "unique": true
+    },
+    "stripeSubscriptionId": {
+      "type": "string"
+    },
+    "setupCompleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "onboardingStep": {
+      "type": "integer",
+      "default": 1,
+      "min": 1,
+      "max": 5
+    },
+    "customColors": {
+      "type": "json"
+    },
+    "businessSettings": {
+      "type": "json"
+    },
+    "operatingHours": {
+      "type": "json"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "America/New_York"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "lastLoginAt": {
+      "type": "datetime"
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "updatedBy": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "clients": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::client.client",
+      "mappedBy": "tenant"
+    },
+    "appointments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::appointment.appointment",
+      "mappedBy": "tenant"
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service",
+      "mappedBy": "tenant"
+    },
+    "forms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::form.form",
+      "mappedBy": "tenant"
+    },
+    "waitlistEntries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::waitlist-entry.waitlist-entry",
+      "mappedBy": "tenant"
+    },
+    "consentForms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::consent-form.consent-form",
+      "mappedBy": "tenant"
+    },
+    "financialTransactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::financial-transaction.financial-transaction",
+      "mappedBy": "tenant"
+    },
+    "smsLogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sms-log.sms-log",
+      "mappedBy": "tenant"
+    },
+    "emailLogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::email-log.email-log",
+      "mappedBy": "tenant"
+    }
+  }
+}

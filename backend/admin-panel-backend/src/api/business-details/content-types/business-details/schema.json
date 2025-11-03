@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "business_details_collection",
+  "info": {
+    "singularName": "business-details",
+    "pluralName": "business-details-collection",
+    "displayName": "Business Details"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "clientStatus": {
+      "type": "enumeration",
+      "enum": [
+        "active,",
+        "inactive,",
+        "blocked"
+      ]
+    },
+    "referralSource": {
+      "type": "enumeration",
+      "enum": [
+        "social_media,",
+        "referral,",
+        "walk_in,",
+        "website,",
+        "other"
+      ]
+    },
+    "totalSpent": {
+      "type": "decimal"
+    },
+    "preferredAppointmentTime": {
+      "type": "enumeration",
+      "enum": [
+        "morning,",
+        "afternoon,",
+        "evening"
+      ]
+    }
+  }
+}

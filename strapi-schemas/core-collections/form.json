@@ -1,0 +1,115 @@
+{
+  "kind": "collectionType",
+  "collectionName": "forms",
+  "info": {
+    "singularName": "form",
+    "pluralName": "forms",
+    "displayName": "Form",
+    "description": "Custom forms and intake questionnaires"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "text"
+    },
+    "formType": {
+      "type": "enumeration",
+      "enum": ["intake", "consent", "medical", "consultation", "feedback", "custom"],
+      "default": "intake",
+      "required": true
+    },
+    "fields": {
+      "type": "json",
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "isRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "showOnBooking": {
+      "type": "boolean",
+      "default": true
+    },
+    "displayOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "successMessage": {
+      "type": "text",
+      "default": "Thank you for your submission!"
+    },
+    "emailOnSubmission": {
+      "type": "boolean",
+      "default": true
+    },
+    "emailTemplate": {
+      "type": "text"
+    },
+    "notificationEmail": {
+      "type": "email"
+    },
+    "submissionCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "completionRate": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    },
+    "averageCompletionTime": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "styling": {
+      "type": "json"
+    },
+    "conditions": {
+      "type": "json"
+    },
+    "validationRules": {
+      "type": "json"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "forms",
+      "required": true
+    },
+    "submissions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::form-submission.form-submission",
+      "mappedBy": "form"
+    },
+    "requiredForServices": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service",
+      "inversedBy": "requiredForms"
+    },
+    "template": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::form-template.form-template",
+      "inversedBy": "forms"
+    }
+  }
+}

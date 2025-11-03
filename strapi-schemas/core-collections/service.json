@@ -1,0 +1,139 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "Services offered by the business"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "text"
+    },
+    "shortDescription": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "depositRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "depositAmount": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "depositPercentage": {
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    },
+    "duration": {
+      "type": "integer",
+      "required": true,
+      "min": 15
+    },
+    "bufferTime": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "isBookableOnline": {
+      "type": "boolean",
+      "default": true
+    },
+    "requiresConsultation": {
+      "type": "boolean",
+      "default": false
+    },
+    "ageRestriction": {
+      "type": "integer",
+      "min": 0,
+      "max": 21
+    },
+    "preparationInstructions": {
+      "type": "text"
+    },
+    "aftercareInstructions": {
+      "type": "text"
+    },
+    "equipmentNeeded": {
+      "type": "json"
+    },
+    "skillLevel": {
+      "type": "enumeration",
+      "enum": ["beginner", "intermediate", "advanced", "expert"],
+      "default": "intermediate"
+    },
+    "popularityScore": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "displayOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "galleryImages": {
+      "type": "json"
+    },
+    "seoKeywords": {
+      "type": "text"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "services",
+      "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service-category.service-category",
+      "inversedBy": "services"
+    },
+    "appointments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::appointment.appointment",
+      "inversedBy": "services"
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::financial-transaction.financial-transaction",
+      "mappedBy": "service"
+    },
+    "requiredForms": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::form.form",
+      "mappedBy": "requiredForServices"
+    }
+  }
+}

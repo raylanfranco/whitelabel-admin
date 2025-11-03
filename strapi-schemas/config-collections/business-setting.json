@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "business_settings",
+  "info": {
+    "singularName": "business-setting",
+    "pluralName": "business-settings",
+    "displayName": "Business Setting",
+    "description": "Business configuration and operational settings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "settingKey": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 100
+    },
+    "settingValue": {
+      "type": "json",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["booking", "payments", "notifications", "branding", "operations", "integrations", "security", "custom"],
+      "default": "custom",
+      "required": true
+    },
+    "dataType": {
+      "type": "enumeration",
+      "enum": ["string", "number", "boolean", "object", "array"],
+      "default": "string",
+      "required": true
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": false
+    },
+    "isSystem": {
+      "type": "boolean",
+      "default": false
+    },
+    "isEditable": {
+      "type": "boolean",
+      "default": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "validationRules": {
+      "type": "json"
+    },
+    "defaultValue": {
+      "type": "json"
+    },
+    "displayName": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "displayOrder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "helpText": {
+      "type": "text"
+    },
+    "lastModifiedBy": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "default": "1.0"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "required": true
+    },
+    "modifiedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "kind": "collectionType",
+  "collectionName": "themes",
+  "info": {
+    "singularName": "theme",
+    "pluralName": "themes",
+    "displayName": "Theme",
+    "description": "UI themes and branding configurations"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "displayName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "text"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPremium": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
+    },
+    "primaryColor": {
+      "type": "string",
+      "required": true,
+      "default": "#6366f1"
+    },
+    "secondaryColor": {
+      "type": "string",
+      "required": true,
+      "default": "#8b5cf6"
+    },
+    "accentColor": {
+      "type": "string",
+      "required": true,
+      "default": "#06b6d4"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "required": true,
+      "default": "#f8fafc"
+    },
+    "textColor": {
+      "type": "string",
+      "required": true,
+      "default": "#1e293b"
+    },
+    "borderColor": {
+      "type": "string",
+      "required": true,
+      "default": "#e2e8f0"
+    },
+    "gradientStart": {
+      "type": "string",
+      "required": true,
+      "default": "#6366f1"
+    },
+    "gradientEnd": {
+      "type": "string",
+      "required": true,
+      "default": "#8b5cf6"
+    },
+    "cardBackground": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "sidebarBackground": {
+      "type": "string",
+      "default": "#1e293b"
+    },
+    "fontFamily": {
+      "type": "string",
+      "default": "Inter, system-ui, -apple-system, sans-serif"
+    },
+    "fontSize": {
+      "type": "enumeration",
+      "enum": ["small", "medium", "large"],
+      "default": "medium"
+    },
+    "borderRadius": {
+      "type": "enumeration",
+      "enum": ["none", "small", "medium", "large"],
+      "default": "medium"
+    },
+    "shadowStyle": {
+      "type": "enumeration",
+      "enum": ["none", "soft", "medium", "strong"],
+      "default": "medium"
+    },
+    "customCSS": {
+      "type": "text"
+    },
+    "previewImage": {
+      "type": "string"
+    },
+    "cssVariables": {
+      "type": "json"
+    },
+    "darkMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "darkModeColors": {
+      "type": "json"
+    },
+    "usageCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "rating": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 5
+    },
+    "ratingCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["modern", "classic", "minimal", "bold", "professional", "creative"],
+      "default": "modern"
+    },
+    "industry": {
+      "type": "enumeration",
+      "enum": ["tattoo", "beauty", "wellness", "professional", "creative", "general"],
+      "default": "general"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

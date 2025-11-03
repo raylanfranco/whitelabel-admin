@@ -1,0 +1,144 @@
+{
+  "kind": "collectionType",
+  "collectionName": "appointments",
+  "info": {
+    "singularName": "appointment",
+    "pluralName": "appointments",
+    "displayName": "Appointment",
+    "description": "Client appointments and bookings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "appointmentDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "startTime": {
+      "type": "time",
+      "required": true
+    },
+    "endTime": {
+      "type": "time",
+      "required": true
+    },
+    "duration": {
+      "type": "integer",
+      "required": true,
+      "min": 15
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["scheduled", "confirmed", "in_progress", "completed", "cancelled", "no_show"],
+      "default": "scheduled",
+      "required": true
+    },
+    "appointmentType": {
+      "type": "enumeration",
+      "enum": ["consultation", "session", "touch_up", "follow_up"],
+      "default": "session",
+      "required": true
+    },
+    "notes": {
+      "type": "text"
+    },
+    "internalNotes": {
+      "type": "text"
+    },
+    "totalCost": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "depositAmount": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "depositPaid": {
+      "type": "boolean",
+      "default": false
+    },
+    "depositPaidAt": {
+      "type": "datetime"
+    },
+    "reminderSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "reminderSentAt": {
+      "type": "datetime"
+    },
+    "confirmationSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "confirmationSentAt": {
+      "type": "datetime"
+    },
+    "clientConfirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "clientConfirmedAt": {
+      "type": "datetime"
+    },
+    "cancellationReason": {
+      "type": "text"
+    },
+    "cancelledBy": {
+      "type": "enumeration",
+      "enum": ["client", "business", "system"]
+    },
+    "cancelledAt": {
+      "type": "datetime"
+    },
+    "rescheduleCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "appointmentSource": {
+      "type": "enumeration",
+      "enum": ["online_booking", "phone", "walk_in", "waitlist", "referral"],
+      "default": "online_booking"
+    },
+    "beforePhotos": {
+      "type": "json"
+    },
+    "afterPhotos": {
+      "type": "json"
+    },
+    "sessionNotes": {
+      "type": "text"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "appointments",
+      "required": true
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "appointments",
+      "required": true
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service",
+      "mappedBy": "appointments"
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::financial-transaction.financial-transaction",
+      "mappedBy": "appointment"
+    }
+  }
+}

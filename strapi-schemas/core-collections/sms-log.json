@@ -1,0 +1,162 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sms_logs",
+  "info": {
+    "singularName": "sms-log",
+    "pluralName": "sms-logs",
+    "displayName": "SMS Log",
+    "description": "SMS message tracking and communication logs"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "twilioMessageSid": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "direction": {
+      "type": "enumeration",
+      "enum": ["outbound", "inbound"],
+      "required": true
+    },
+    "messageType": {
+      "type": "enumeration",
+      "enum": ["reminder", "confirmation", "waitlist_notification", "marketing", "support", "automated_response", "manual"],
+      "default": "manual",
+      "required": true
+    },
+    "toNumber": {
+      "type": "string",
+      "required": true
+    },
+    "fromNumber": {
+      "type": "string",
+      "required": true
+    },
+    "messageBody": {
+      "type": "text",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["queued", "sending", "sent", "delivered", "failed", "undelivered", "received"],
+      "default": "queued",
+      "required": true
+    },
+    "twilioStatus": {
+      "type": "string"
+    },
+    "errorCode": {
+      "type": "string"
+    },
+    "errorMessage": {
+      "type": "text"
+    },
+    "segments": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    },
+    "cost": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "sentAt": {
+      "type": "datetime"
+    },
+    "deliveredAt": {
+      "type": "datetime"
+    },
+    "receivedAt": {
+      "type": "datetime"
+    },
+    "scheduledFor": {
+      "type": "datetime"
+    },
+    "templateUsed": {
+      "type": "string"
+    },
+    "templateVariables": {
+      "type": "json"
+    },
+    "campaignId": {
+      "type": "string"
+    },
+    "automationTriggered": {
+      "type": "boolean",
+      "default": false
+    },
+    "automationRule": {
+      "type": "string"
+    },
+    "clientResponse": {
+      "type": "text"
+    },
+    "responseProcessed": {
+      "type": "boolean",
+      "default": false
+    },
+    "responseAction": {
+      "type": "enumeration",
+      "enum": ["none", "appointment_confirmed", "appointment_cancelled", "waitlist_accepted", "waitlist_declined", "custom_action"]
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["low", "normal", "high", "urgent"],
+      "default": "normal"
+    },
+    "retryCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "maxRetries": {
+      "type": "integer",
+      "default": 3,
+      "min": 0
+    },
+    "nextRetryAt": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "smsLogs",
+      "required": true
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client"
+    },
+    "appointment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::appointment.appointment"
+    },
+    "waitlistEntry": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::waitlist-entry.waitlist-entry"
+    },
+    "conversation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::conversation.conversation",
+      "inversedBy": "smsLogs"
+    },
+    "sentBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

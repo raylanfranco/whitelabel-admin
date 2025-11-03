@@ -1,0 +1,114 @@
+{
+  "kind": "collectionType",
+  "collectionName": "form_submissions",
+  "info": {
+    "singularName": "form-submission",
+    "pluralName": "form-submissions",
+    "displayName": "Form Submission",
+    "description": "Client form responses and submissions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "submissionData": {
+      "type": "json",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["new", "reviewed", "processed", "archived"],
+      "default": "new",
+      "required": true
+    },
+    "submittedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "reviewedAt": {
+      "type": "datetime"
+    },
+    "processedAt": {
+      "type": "datetime"
+    },
+    "completionTime": {
+      "type": "integer",
+      "min": 0
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "browserFingerprint": {
+      "type": "string"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": ["website", "admin_panel", "mobile_app", "email_link", "qr_code"],
+      "default": "website"
+    },
+    "referrerUrl": {
+      "type": "string"
+    },
+    "deviceType": {
+      "type": "enumeration",
+      "enum": ["desktop", "mobile", "tablet"],
+      "default": "desktop"
+    },
+    "flaggedForReview": {
+      "type": "boolean",
+      "default": false
+    },
+    "flagReason": {
+      "type": "text"
+    },
+    "adminNotes": {
+      "type": "text"
+    },
+    "followUpRequired": {
+      "type": "boolean",
+      "default": false
+    },
+    "followUpDate": {
+      "type": "date"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["low", "normal", "high", "urgent"],
+      "default": "normal"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "attachments": {
+      "type": "json"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "formSubmissions",
+      "required": true
+    },
+    "form": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::form.form",
+      "inversedBy": "submissions",
+      "required": true
+    },
+    "reviewedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    },
+    "processedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

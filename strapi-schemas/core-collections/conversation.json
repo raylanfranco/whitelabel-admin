@@ -1,0 +1,142 @@
+{
+  "kind": "collectionType",
+  "collectionName": "conversations",
+  "info": {
+    "singularName": "conversation",
+    "pluralName": "conversations",
+    "displayName": "Conversation",
+    "description": "Client conversation threads and messaging"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "closed", "archived", "spam"],
+      "default": "active",
+      "required": true
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["low", "normal", "high", "urgent"],
+      "default": "normal"
+    },
+    "channel": {
+      "type": "enumeration",
+      "enum": ["sms", "email", "chat", "phone", "in_person"],
+      "default": "sms",
+      "required": true
+    },
+    "messageCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "unreadCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "lastMessageAt": {
+      "type": "datetime"
+    },
+    "lastMessagePreview": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "lastMessageFrom": {
+      "type": "enumeration",
+      "enum": ["client", "business", "system"],
+      "default": "client"
+    },
+    "isClientInitiated": {
+      "type": "boolean",
+      "default": true
+    },
+    "resolvedAt": {
+      "type": "datetime"
+    },
+    "resolutionNotes": {
+      "type": "text"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "assignedTo": {
+      "type": "string"
+    },
+    "assignedAt": {
+      "type": "datetime"
+    },
+    "escalated": {
+      "type": "boolean",
+      "default": false
+    },
+    "escalatedAt": {
+      "type": "datetime"
+    },
+    "escalationReason": {
+      "type": "text"
+    },
+    "satisfactionRating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "satisfactionFeedback": {
+      "type": "text"
+    },
+    "automatedResponses": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "averageResponseTime": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "totalDuration": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "conversations",
+      "required": true
+    },
+    "appointment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::appointment.appointment"
+    },
+    "smsLogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sms-log.sms-log",
+      "mappedBy": "conversation"
+    },
+    "assignedUser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    },
+    "resolvedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

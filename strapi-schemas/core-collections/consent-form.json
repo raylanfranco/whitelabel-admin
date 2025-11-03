@@ -1,0 +1,125 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consent_forms",
+  "info": {
+    "singularName": "consent-form",
+    "pluralName": "consent-forms",
+    "displayName": "Consent Form",
+    "description": "Digital consent forms and legal documents"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "formType": {
+      "type": "enumeration",
+      "enum": ["tattoo_consent", "piercing_consent", "touch_up_consent", "medical_release", "photo_release", "liability_waiver", "custom"],
+      "default": "tattoo_consent",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "version": {
+      "type": "string",
+      "required": true,
+      "default": "1.0"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "effectiveDate": {
+      "type": "date",
+      "required": true
+    },
+    "expirationDate": {
+      "type": "date"
+    },
+    "requiresWitness": {
+      "type": "boolean",
+      "default": false
+    },
+    "requiresParentalConsent": {
+      "type": "boolean",
+      "default": false
+    },
+    "minimumAge": {
+      "type": "integer",
+      "default": 18,
+      "min": 0,
+      "max": 21
+    },
+    "legalDisclaimer": {
+      "type": "richtext"
+    },
+    "riskWarnings": {
+      "type": "json"
+    },
+    "aftercareInstructions": {
+      "type": "richtext"
+    },
+    "emergencyProcedures": {
+      "type": "richtext"
+    },
+    "template": {
+      "type": "richtext"
+    },
+    "customFields": {
+      "type": "json"
+    },
+    "signatureFields": {
+      "type": "json"
+    },
+    "validationRules": {
+      "type": "json"
+    },
+    "completionRequirements": {
+      "type": "json"
+    },
+    "usageCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "completionRate": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    },
+    "averageCompletionTime": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "lastUsed": {
+      "type": "datetime"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "consentForms",
+      "required": true
+    },
+    "signatures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::signature.signature",
+      "mappedBy": "consentForm"
+    },
+    "requiredForServices": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service"
+    }
+  }
+}

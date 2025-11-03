@@ -1,0 +1,93 @@
+{
+  "kind": "collectionType",
+  "collectionName": "form_templates",
+  "info": {
+    "singularName": "form-template",
+    "pluralName": "form-templates",
+    "displayName": "Form Template",
+    "description": "Predefined form templates for quick form creation"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "text"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["intake", "medical", "consent", "consultation", "feedback", "custom"],
+      "default": "custom",
+      "required": true
+    },
+    "industry": {
+      "type": "enumeration",
+      "enum": ["tattoo", "piercing", "esthetics", "beauty", "wellness", "general"],
+      "default": "general"
+    },
+    "fieldSchema": {
+      "type": "json",
+      "required": true
+    },
+    "validation": {
+      "type": "json"
+    },
+    "styling": {
+      "type": "json"
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": false
+    },
+    "isPremium": {
+      "type": "boolean",
+      "default": false
+    },
+    "usageCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "rating": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 5
+    },
+    "ratingCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "version": {
+      "type": "string",
+      "default": "1.0"
+    },
+    "changelog": {
+      "type": "json"
+    },
+    "preview": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "forms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::form.form",
+      "mappedBy": "template"
+    },
+    "createdBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

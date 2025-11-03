@@ -1,0 +1,142 @@
+{
+  "kind": "collectionType",
+  "collectionName": "signatures",
+  "info": {
+    "singularName": "signature",
+    "pluralName": "signatures",
+    "displayName": "Signature",
+    "description": "Digital signatures for consent forms and legal documents"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "signatureData": {
+      "type": "text",
+      "required": true
+    },
+    "signatureType": {
+      "type": "enumeration",
+      "enum": ["canvas", "typed", "uploaded", "electronic_pad"],
+      "default": "canvas",
+      "required": true
+    },
+    "signedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "ipAddress": {
+      "type": "string",
+      "required": true
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "deviceType": {
+      "type": "enumeration",
+      "enum": ["desktop", "mobile", "tablet"],
+      "default": "desktop"
+    },
+    "geolocation": {
+      "type": "json"
+    },
+    "witnessName": {
+      "type": "string"
+    },
+    "witnessSignature": {
+      "type": "text"
+    },
+    "witnessEmail": {
+      "type": "email"
+    },
+    "witnessPhone": {
+      "type": "string"
+    },
+    "parentalConsent": {
+      "type": "boolean",
+      "default": false
+    },
+    "parentGuardianName": {
+      "type": "string"
+    },
+    "parentGuardianSignature": {
+      "type": "text"
+    },
+    "relationshipToMinor": {
+      "type": "string"
+    },
+    "idVerification": {
+      "type": "json"
+    },
+    "documentHash": {
+      "type": "string"
+    },
+    "signatureHash": {
+      "type": "string"
+    },
+    "verificationStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "verified", "invalid", "expired"],
+      "default": "pending"
+    },
+    "verifiedAt": {
+      "type": "datetime"
+    },
+    "verificationMethod": {
+      "type": "string"
+    },
+    "legalStatus": {
+      "type": "enumeration",
+      "enum": ["valid", "disputed", "void", "superseded"],
+      "default": "valid"
+    },
+    "auditTrail": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "pdfGenerated": {
+      "type": "boolean",
+      "default": false
+    },
+    "pdfPath": {
+      "type": "string"
+    },
+    "pdfGeneratedAt": {
+      "type": "datetime"
+    },
+    "emailSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "emailSentAt": {
+      "type": "datetime"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "signatures",
+      "required": true
+    },
+    "consentForm": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::consent-form.consent-form",
+      "inversedBy": "signatures",
+      "required": true
+    },
+    "appointment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::appointment.appointment"
+    },
+    "verifiedBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "admin::user"
+    }
+  }
+}

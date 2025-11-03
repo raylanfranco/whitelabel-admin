@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "basic_informations",
+  "info": {
+    "singularName": "basic-information",
+    "pluralName": "basic-informations",
+    "displayName": "Basic Information"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "dateOfBirth": {
+      "type": "date"
+    },
+    "emergencyContact": {
+      "type": "string"
+    },
+    "emergencyPhone": {
+      "type": "string"
+    }
+  }
+}

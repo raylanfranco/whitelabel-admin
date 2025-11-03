@@ -1,0 +1,147 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "Client",
+    "description": "Customer/client profiles for each tenant"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "lastName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "dateOfBirth": {
+      "type": "date"
+    },
+    "address": {
+      "type": "text"
+    },
+    "emergencyContact": {
+      "type": "string"
+    },
+    "emergencyPhone": {
+      "type": "string"
+    },
+    "clientStatus": {
+      "type": "enumeration",
+      "enum": ["active", "inactive", "blocked"],
+      "default": "active",
+      "required": true
+    },
+    "referralSource": {
+      "type": "enumeration",
+      "enum": ["social_media", "referral", "website", "walk_in", "google", "other"],
+      "default": "other"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "medicalHistory": {
+      "type": "json"
+    },
+    "allergies": {
+      "type": "text"
+    },
+    "medications": {
+      "type": "text"
+    },
+    "totalSessions": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "totalSpent": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0
+    },
+    "lastVisit": {
+      "type": "datetime"
+    },
+    "nextAppointment": {
+      "type": "datetime"
+    },
+    "preferences": {
+      "type": "json"
+    },
+    "communicationPreferences": {
+      "type": "json"
+    },
+    "isMinor": {
+      "type": "boolean",
+      "default": false
+    },
+    "guardianName": {
+      "type": "string"
+    },
+    "guardianPhone": {
+      "type": "string"
+    },
+    "profilePicture": {
+      "type": "string"
+    },
+    "tenant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tenant.tenant",
+      "inversedBy": "clients",
+      "required": true
+    },
+    "appointments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::appointment.appointment",
+      "mappedBy": "client"
+    },
+    "formSubmissions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::form-submission.form-submission",
+      "mappedBy": "client"
+    },
+    "waitlistEntries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::waitlist-entry.waitlist-entry",
+      "mappedBy": "client"
+    },
+    "signatures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::signature.signature",
+      "mappedBy": "client"
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::financial-transaction.financial-transaction",
+      "mappedBy": "client"
+    },
+    "conversations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::conversation.conversation",
+      "mappedBy": "client"
+    }
+  }
+}
